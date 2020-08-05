@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Company"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="200" Width="300">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               FontSize="14" HorizontalAlignment="Right" TextWrapping="Wrap" FontWeight="Bold"
+               Margin="2,2,2,2"/>
+        <TextBlock Text="Username:" Grid.Row="1" Grid.Column="0" />
+        <TextBlock Text="Password:" Grid.Row="2" Grid.Column="0" />
+        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
+        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" 
+     FontFamily="pack://application:,,,/Resources/#password" >
+            <TextBox.InputBindings>
+                <!--Disable CTRL+C -->
+                <KeyBinding Command="ApplicationCommands.NotACommand"
+            Key="C"
+            Modifiers="Control" />
+            </TextBox.InputBindings>
+        </TextBox>
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <Button Grid.Row="5" Content="Log in" Command="{Binding LogIn, UpdateSourceTrigger=PropertyChanged}"            
+            HorizontalAlignment="Center" Width="50"/>
+            <Button Grid.Row="5" Content="Exit" Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}"            
+            HorizontalAlignment="Center" Margin="10,0,0,0" Width="50"/>
+        </StackPanel>
     </Grid>
 </Window>
