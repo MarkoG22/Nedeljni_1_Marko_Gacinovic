@@ -27,7 +27,7 @@
         <TextBlock Text="Username:" Grid.Row="1" Grid.Column="0" />
         <TextBlock Text="Password:" Grid.Row="2" Grid.Column="0" />
         <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" />
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" 
+        <TextBox Text="{Binding UserPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" 
      FontFamily="pack://application:,,,/Resources/#password" >
             <TextBox.InputBindings>
                 <!--Disable CTRL+C -->

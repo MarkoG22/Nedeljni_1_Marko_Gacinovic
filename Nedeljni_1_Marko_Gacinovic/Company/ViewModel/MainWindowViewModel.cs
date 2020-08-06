@@ -1,4 +1,5 @@
 ﻿using Company.Commands;
+using Company.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,12 +70,9 @@ namespace Company.ViewModel
         {
             if (username == "WPFMaster" && userPassword == "WPFAccess")
             {
-                
-            }
-            else if (true)
-            {
-                
-            }
+                MasterView master = new MasterView();
+                master.ShowDialog();
+            }            
             else
             {
                 MessageBox.Show("Wrong username or password, please try again.");
