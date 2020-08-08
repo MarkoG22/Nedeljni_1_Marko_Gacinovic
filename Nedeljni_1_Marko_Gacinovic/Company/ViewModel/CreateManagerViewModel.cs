@@ -128,6 +128,7 @@ namespace Company.ViewModel
                     newManager.SuccessfulProjects = manager.SuccessfulProjects;
                     newManager.OfficeNumber = manager.OfficeNumber;
                     newManager.ManagerID = manager.ManagerID;
+                    newManager.UserID = newUser.UserID;
 
                     context.tblUsers.Add(newUser);
                     context.tblManagers.Add(newManager);
@@ -157,6 +158,40 @@ namespace Company.ViewModel
             }
         }
 
+        // command for closing the window
+        private ICommand close;
+        public ICommand Close
+        {
+            get
+            {
+                if (close == null)
+                {
+                    close = new RelayCommand(param => CloseExecute(), param => CanCloseExecute());
+                }
+                return close;
+            }
+        }
+
+        /// <summary>
+        /// method for closing the window
+        /// </summary>
+        private void CloseExecute()
+        {
+            try
+            {
+                createManagerView.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+
+        private bool CanCloseExecute()
+        {
+            return true;
+        }
+
         /// <summary>
         /// JMBG validation
         /// </summary>
@@ -184,7 +219,5 @@ namespace Company.ViewModel
             }
             return false;
         }
-
-        
     }
 }

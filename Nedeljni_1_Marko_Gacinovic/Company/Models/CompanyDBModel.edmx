@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CompanyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CompanyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAdmin">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -183,7 +183,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
           <Property Name="PositionID" Type="int" />
           <Property Name="WorkerID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblAdmin__UserID__403A8C7D">
+        <Association Name="FK__tblAdmin__UserID__0697FACD">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="*" />
           <ReferentialConstraint>
@@ -195,7 +195,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblManage__UserI__3D5E1FD2">
+        <Association Name="FK__tblManage__UserI__03BB8E22">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,7 +207,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblProjec__Manag__440B1D61">
+        <Association Name="FK__tblProjec__Manag__0A688BB1">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="1" />
           <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,7 +219,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblWorker__Posit__398D8EEE">
+        <Association Name="FK__tblWorker__Posit__7FEAFD3E">
           <End Role="tblPosition" Type="Self.tblPosition" Multiplicity="0..1" />
           <End Role="tblWorker" Type="Self.tblWorker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -231,7 +231,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblWorker__Secto__38996AB5">
+        <Association Name="FK__tblWorker__Secto__7EF6D905">
           <End Role="tblSector" Type="Self.tblSector" Multiplicity="1" />
           <End Role="tblWorker" Type="Self.tblWorker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,7 +243,7 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblWorker__UserI__37A5467C">
+        <Association Name="FK__tblWorker__UserI__7E02B4CC">
           <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
           <End Role="tblWorker" Type="Self.tblWorker" Multiplicity="*" />
           <ReferentialConstraint>
@@ -318,33 +318,32 @@ warning 6002: The table/view 'CompanyDB.dbo.vwWorker' does not have a primary ke
     [vwWorker].[WorkerID] AS [WorkerID]
     FROM [dbo].[vwWorker] AS [vwWorker]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblAdmin__UserID__403A8C7D" Association="Self.FK__tblAdmin__UserID__403A8C7D">
+          <AssociationSet Name="FK__tblAdmin__UserID__0697FACD" Association="Self.FK__tblAdmin__UserID__0697FACD">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblAdmin" EntitySet="tblAdmin" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblManage__UserI__3D5E1FD2" Association="Self.FK__tblManage__UserI__3D5E1FD2">
+          <AssociationSet Name="FK__tblManage__UserI__03BB8E22" Association="Self.FK__tblManage__UserI__03BB8E22">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblManager" EntitySet="tblManager" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblProjec__Manag__440B1D61" Association="Self.FK__tblProjec__Manag__440B1D61">
+          <AssociationSet Name="FK__tblProjec__Manag__0A688BB1" Association="Self.FK__tblProjec__Manag__0A688BB1">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblProject" EntitySet="tblProject" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblWorker__Posit__398D8EEE" Association="Self.FK__tblWorker__Posit__398D8EEE">
+          <AssociationSet Name="FK__tblWorker__Posit__7FEAFD3E" Association="Self.FK__tblWorker__Posit__7FEAFD3E">
             <End Role="tblPosition" EntitySet="tblPosition" />
             <End Role="tblWorker" EntitySet="tblWorker" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblWorker__Secto__38996AB5" Association="Self.FK__tblWorker__Secto__38996AB5">
+          <AssociationSet Name="FK__tblWorker__Secto__7EF6D905" Association="Self.FK__tblWorker__Secto__7EF6D905">
             <End Role="tblSector" EntitySet="tblSector" />
             <End Role="tblWorker" EntitySet="tblWorker" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblWorker__UserI__37A5467C" Association="Self.FK__tblWorker__UserI__37A5467C">
+          <AssociationSet Name="FK__tblWorker__UserI__7E02B4CC" Association="Self.FK__tblWorker__UserI__7E02B4CC">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblWorker" EntitySet="tblWorker" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CompanyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">

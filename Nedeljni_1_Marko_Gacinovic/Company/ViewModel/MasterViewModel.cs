@@ -142,6 +142,7 @@ namespace Company.ViewModel
 
                     newAdmin.AdminID = admin.AdminID;
                     newAdmin.ExpirationDate = DateTime.Now.AddDays(7);
+                    newAdmin.UserID = newUser.UserID;
 
                     context.tblUsers.Add(newUser);
                     context.tblAdmins.Add(newAdmin);
@@ -153,6 +154,40 @@ namespace Company.ViewModel
             {
                 MessageBox.Show("Wrong inputs, please check your inputs or try again.");
             }
+        }
+
+        // command for closing the window
+        private ICommand close;
+        public ICommand Close
+        {
+            get
+            {
+                if (close == null)
+                {
+                    close = new RelayCommand(param => CloseExecute(), param => CanCloseExecute());
+                }
+                return close;
+            }
+        }
+
+        /// <summary>
+        /// method for closing the window
+        /// </summary>
+        private void CloseExecute()
+        {
+            try
+            {
+                masterView.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+
+        private bool CanCloseExecute()
+        {
+            return true;
         }
 
         /// <summary>
