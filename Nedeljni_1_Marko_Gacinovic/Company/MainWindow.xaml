@@ -42,5 +42,7 @@
             <Button Grid.Row="5" Content="Exit" Command="{Binding Logout, UpdateSourceTrigger=PropertyChanged}"            
             HorizontalAlignment="Center" Margin="10,0,0,0" Width="50"/>
         </StackPanel>
+        <Button Content="Create employee" Command="{Binding CreateEmployee, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="32,55.8,0,0" Grid.Row="7" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+        <Button Content="Create manager" Command="{Binding CreateManager, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="96,55.8,0,0" Grid.Row="7" VerticalAlignment="Top" Width="99" Grid.Column="1"/>
     </Grid>
 </Window>
