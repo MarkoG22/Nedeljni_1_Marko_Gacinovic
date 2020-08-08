@@ -75,8 +75,17 @@
     <Compile Include="View\CreateManagerView.xaml.cs">
       <DependentUpon>CreateManagerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LocalAdminView.xaml.cs">
+      <DependentUpon>LocalAdminView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MasterView.xaml.cs">
       <DependentUpon>MasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemAdminView.xaml.cs">
+      <DependentUpon>SystemAdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamAdminView.xaml.cs">
+      <DependentUpon>TeamAdminView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,7 +108,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\LocalAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamAdminView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

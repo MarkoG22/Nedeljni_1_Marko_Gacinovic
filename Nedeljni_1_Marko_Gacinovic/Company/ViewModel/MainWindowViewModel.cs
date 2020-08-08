@@ -1,4 +1,5 @@
 ﻿using Company.Commands;
+using Company.Models;
 using Company.View;
 using System;
 using System.Collections.Generic;
@@ -68,11 +69,28 @@ namespace Company.ViewModel
         /// </summary>
         private void SaveExecute()
         {
+            string adminType = AdminType(Username, UserPassword);
+
             if (username == "WPFMaster" && userPassword == "WPFAccess")
             {
                 MasterView master = new MasterView();
                 master.ShowDialog();
-            }            
+            }
+            else if (adminType == "TEAM")
+            {
+                TeamAdminView team = new TeamAdminView();
+                team.ShowDialog();
+            }
+            else if (adminType == "SYSTEM")
+            {
+                SystemAdminView system = new SystemAdminView();
+                system.ShowDialog();
+            }
+            else if (adminType == "LOCAL")
+            {
+                LocalAdminView local = new LocalAdminView();
+                local.ShowDialog();
+            }
             else
             {
                 MessageBox.Show("Wrong username or password, please try again.");
@@ -161,6 +179,26 @@ namespace Company.ViewModel
         {
             CreateManagerView manager = new CreateManagerView();
             manager.ShowDialog();
+        }
+
+        private string AdminType(string username, string password)
+        {
+            try
+            {
+                using (CompanyDBEntities context = new CompanyDBEntities())
+                {                    
+                    tblUser user = (from x in context.tblUsers where x.Username == username && x.UserPassword == password select x).First();
+                    int id = user.UserID;
+                    tblAdmin admin = (from y in context.tblAdmins where y.UserID == id select y).First();
+                    string type = admin.AdminType;
+                    return type;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
         }
     }
 }
