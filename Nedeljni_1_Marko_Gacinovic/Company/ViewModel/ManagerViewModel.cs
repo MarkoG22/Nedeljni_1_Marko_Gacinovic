@@ -15,6 +15,7 @@ namespace Company.ViewModel
     {
         ManagerView managerView;
 
+        // properties
         private tblPosition position;
         public tblPosition Position
         {
@@ -43,6 +44,7 @@ namespace Company.ViewModel
             set { manager = value; OnPropertyChanged("Manager"); }
         }
         
+        // constructor
         public ManagerViewModel(ManagerView managerViewOpen, tblManager managerToPass)
         {
             manager = managerToPass;
@@ -50,6 +52,7 @@ namespace Company.ViewModel
             ProjectList = GetAllProjects();
         }
 
+        // commands
         private ICommand addNewProject;
         public ICommand AddNewProject
         {
@@ -68,12 +71,16 @@ namespace Company.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// method for opening the view for adding new project
+        /// </summary>
         private void AddNewProjectExecute()
         {
             try
             {
                 AddProjectView addProject = new AddProjectView(manager);
                 addProject.ShowDialog();
+                // updating the project list view
                 if ((addProject.DataContext as AddProjectViewModel).IsUpdateProject == true)
                 {
                     ProjectList = GetAllProjects().ToList();                    
@@ -103,6 +110,9 @@ namespace Company.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// method for opening the view for adding new position
+        /// </summary>
         private void AddNewPositionExecute()
         {
             try
@@ -135,6 +145,9 @@ namespace Company.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// method for deleting the project
+        /// </summary>
         private void DeleteProjectExecute()
         {
             try
@@ -143,17 +156,21 @@ namespace Company.ViewModel
                 {
                     int id = project.ProjectID;
 
+                    // checking the action
                     MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete the project?", "Delete Confirmation", MessageBoxButton.YesNo);
 
                     if (messageBoxResult == MessageBoxResult.Yes)
                     {
                         tblProject projectToDelete = (from x in context.tblProjects where x.ProjectID == id select x).First();
 
+                        // deleting the project
                         context.tblProjects.Remove(projectToDelete);
                         context.SaveChanges();
 
+                        // updating the list
                         ProjectList = GetAllProjects().ToList();
 
+                        // logging the action
                         FileActions.FileActions.Instance.Deleting(FileActions.FileActions.path, FileActions.FileActions.actions, "project", projectToDelete.ProjectName);
                     }
                 }               
@@ -164,6 +181,10 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for getting all projects to the list
+        /// </summary>
+        /// <returns></returns>
         private List<tblProject> GetAllProjects()
         {
             try

@@ -15,6 +15,7 @@ namespace Company.ViewModel
     {
         AddProjectView addProject;
 
+        // properties
         private tblProject project;
         public tblProject Project
         {
@@ -29,6 +30,7 @@ namespace Company.ViewModel
             set { manager = value; OnPropertyChanged("Manager"); }
         }
 
+        // property for updating the project list view
         private bool isUpdateProject;
         public bool IsUpdateProject
         {
@@ -42,6 +44,7 @@ namespace Company.ViewModel
             }
         }
 
+        // constructor
         public AddProjectViewModel(AddProjectView addProjectOpen, tblManager managerToPass)
         {
             manager = managerToPass;
@@ -49,6 +52,7 @@ namespace Company.ViewModel
             project = new tblProject();
         }
 
+        // commands
         private ICommand save;
         public ICommand Save
         {
@@ -75,6 +79,9 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for saving the data to the database
+        /// </summary>
         private void SaveExecute()
         {
             try
@@ -83,6 +90,7 @@ namespace Company.ViewModel
                 {
                     tblProject newProject = new tblProject();
 
+                    // inputs and validations
                     newProject.ProjectName = project.ProjectName;
                     newProject.ProjectDescription = project.ProjectDescription;
 
@@ -122,16 +130,19 @@ namespace Company.ViewModel
                         MessageBox.Show("Wrong Realisation input, please try again. \n(0/1/2)");
                     }
 
-
+                    // getting the ManagerID for the project
                     tblManager viaManager = (from x in context.tblManagers where x.ManagerID == manager.ManagerID select x).FirstOrDefault();
                     newProject.ManagerID = viaManager.ManagerID;
                     newProject.ProjectID = project.ProjectID;
 
+                    // saving data
                     context.tblProjects.Add(newProject);
                     context.SaveChanges();
 
+                    // logging action
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "project", newProject.ProjectName);
 
+                    // updating the project list view
                     IsUpdateProject = true;
                 }
                 addProject.Close();

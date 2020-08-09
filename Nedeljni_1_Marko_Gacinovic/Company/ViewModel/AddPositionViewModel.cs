@@ -15,6 +15,7 @@ namespace Company.ViewModel
     {
         AddPositionView addPosition;
 
+        // properties
         private tblPosition position;
         public tblPosition Position
         {
@@ -22,12 +23,14 @@ namespace Company.ViewModel
             set { position = value; OnPropertyChanged("Position"); }
         }
 
+        // constructor
         public AddPositionViewModel(AddPositionView addPositionOpen)
         {
             addPosition = addPositionOpen;
             position = new tblPosition();
         }
 
+        // commands
         private ICommand save;
         public ICommand Save
         {
@@ -53,6 +56,9 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for saving data to the database
+        /// </summary>
         private void SaveExecute()
         {
             try
@@ -65,9 +71,11 @@ namespace Company.ViewModel
                     newPosition.PositionDescription = position.PositionDescription;
                     newPosition.PositionID = position.PositionID;
 
+                    // saving data
                     context.tblPositions.Add(newPosition);
                     context.SaveChanges();
 
+                    // logging the action
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "position", newPosition.PositionName);
                 }
                 addPosition.Close();

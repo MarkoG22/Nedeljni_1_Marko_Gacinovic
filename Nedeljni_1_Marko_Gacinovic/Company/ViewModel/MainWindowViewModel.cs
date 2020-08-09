@@ -106,9 +106,10 @@ namespace Company.ViewModel
                 {
                     using (CompanyDBEntities context = new CompanyDBEntities())
                     {
+                        // getting the manager for later actions with projects
                         tblUser user = (from x in context.tblUsers where x.Username == username select x).First();
                         manager = (from y in context.tblManagers where y.UserID == user.UserID select y).First();
-
+                        
                         ManagerView managerView = new ManagerView(manager);
                         managerView.ShowDialog();
                     }
@@ -177,6 +178,9 @@ namespace Company.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// method for opening the view for creating employee
+        /// </summary>
         private void CreateEmployeeExecute()
         {
             CreateEmployeeView employee = new CreateEmployeeView();
@@ -202,12 +206,21 @@ namespace Company.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// method for opening the view for creating manager
+        /// </summary>
         private void CreateManagerExecute()
         {
             CreateManagerView manager = new CreateManagerView();
             manager.ShowDialog();
         }
 
+        /// <summary>
+        /// method for checking which type is admin
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private string AdminType(string username, string password)
         {
             try
@@ -228,6 +241,12 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for checking if user is manager
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private bool IsManager(string username, string password)
         {
             try

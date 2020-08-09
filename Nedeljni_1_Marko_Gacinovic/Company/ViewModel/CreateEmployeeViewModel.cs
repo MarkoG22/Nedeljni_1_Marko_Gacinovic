@@ -15,6 +15,7 @@ namespace Company.ViewModel
     {
         CreateEmployeeView createEmployeeView;
 
+        // properties
         private tblUser user;
         public tblUser User
         {
@@ -28,7 +29,6 @@ namespace Company.ViewModel
             get { return worker; }
             set { worker = value; OnPropertyChanged("Worker"); }
         }
-
 
         private tblSector sector;
         public tblSector Sector
@@ -58,6 +58,7 @@ namespace Company.ViewModel
             set { positionList = value; OnPropertyChanged("PositionList"); }
         }
 
+        // constructor
         public CreateEmployeeViewModel(CreateEmployeeView employeeOpen)
         {
             user = new tblUser();
@@ -67,6 +68,7 @@ namespace Company.ViewModel
             PositionList = GetAllPosition();
         }
 
+        // commands
         private ICommand save;
         public ICommand Save
         {
@@ -96,6 +98,9 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for saving data to the database
+        /// </summary>
         private void SaveExecute()
         {
             try
@@ -105,6 +110,7 @@ namespace Company.ViewModel
                     tblUser newUser = new tblUser();
                     tblWorker newWorker = new tblWorker();
 
+                    // inputs and validations
                     if (user.FirstName.All(Char.IsLetter))
                     {
                         newUser.FirstName = user.FirstName;
@@ -178,10 +184,12 @@ namespace Company.ViewModel
                     newWorker.SectorID = Sector.SectorID;
                     newWorker.PositionID = Position.PositionID;
 
+                    // saving the data
                     context.tblUsers.Add(newUser);
                     context.tblWorkers.Add(newWorker);
                     context.SaveChanges();
 
+                    // logging actions
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "employee", newUser.FirstName + " " + newUser.LastName);
                 }
@@ -227,6 +235,10 @@ namespace Company.ViewModel
             return true;
         }
 
+        /// <summary>
+        /// method for getting all sectors to the list
+        /// </summary>
+        /// <returns></returns>
         private List<tblSector> GetAllSector()
         {
             try
@@ -245,6 +257,10 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for getting all positions to the list
+        /// </summary>
+        /// <returns></returns>
         private List<tblPosition> GetAllPosition()
         {
             try

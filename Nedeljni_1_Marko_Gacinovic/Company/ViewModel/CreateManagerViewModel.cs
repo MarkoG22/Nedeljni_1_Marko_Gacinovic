@@ -15,6 +15,7 @@ namespace Company.ViewModel
     {
         CreateManagerView createManagerView;
 
+        // properties
         private tblUser user;
         public tblUser User
         {
@@ -29,6 +30,7 @@ namespace Company.ViewModel
             set { manager = value; OnPropertyChanged("Manager"); }
         }
 
+        // constructor
         public CreateManagerViewModel(CreateManagerView managerOpen)
         {
             user = new tblUser();
@@ -49,6 +51,9 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for saving data to the database
+        /// </summary>
         private void SaveExecute()
         {
             try
@@ -58,6 +63,7 @@ namespace Company.ViewModel
                     tblUser newUser = new tblUser();
                     tblManager newManager = new tblManager();
 
+                    // inputs and validations
                     if (user.FirstName.All(Char.IsLetter))
                     {
                         newUser.FirstName = user.FirstName;
@@ -78,6 +84,7 @@ namespace Company.ViewModel
 
                     newUser.JMBG = user.JMBG;
 
+                    // JMBG validation
                     if (JmbgInputValidation(newUser.JMBG) == false)
                     {
                         MessageBox.Show("Wrong input, please check your JMBG (13 characters).");
@@ -130,10 +137,12 @@ namespace Company.ViewModel
                     newManager.ManagerID = manager.ManagerID;
                     newManager.UserID = newUser.UserID;
 
+                    // saving data
                     context.tblUsers.Add(newUser);
                     context.tblManagers.Add(newManager);
                     context.SaveChanges();
 
+                    // logging actions
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "manager", newUser.FirstName + " " + newUser.LastName);
                 }

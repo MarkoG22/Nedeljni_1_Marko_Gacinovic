@@ -15,6 +15,7 @@ namespace Company.ViewModel
     {
         MasterView masterView;
 
+        // properties
         private tblUser user;
         public tblUser User
         {
@@ -29,6 +30,7 @@ namespace Company.ViewModel
             set { admin = value; OnPropertyChanged("Admin"); }
         }
 
+        // constructor
         public MasterViewModel(MasterView masterViewOpen)
         {
             user = new tblUser();
@@ -36,6 +38,7 @@ namespace Company.ViewModel
             masterView = masterViewOpen;
         }
 
+        // commands
         private ICommand save;
         public ICommand Save
         {
@@ -49,6 +52,10 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for Save button disabled
+        /// </summary>
+        /// <returns></returns>
         private bool CanSaveExecute()
         {
             if (String.IsNullOrEmpty(user.FirstName) || String.IsNullOrEmpty(user.LastName)
@@ -65,15 +72,19 @@ namespace Company.ViewModel
             }
         }
 
+        /// <summary>
+        /// method for saving data to the database
+        /// </summary>
         private void SaveExecute()
         {
             try
             {
                 using (CompanyDBEntities context = new CompanyDBEntities())
-                {
+                {                    
                     tblUser newUser = new tblUser();
                     tblAdmin newAdmin = new tblAdmin();
 
+                    // inputs and validations
                     if (user.FirstName.All(Char.IsLetter))
                     {
                         newUser.FirstName = user.FirstName;
@@ -94,6 +105,7 @@ namespace Company.ViewModel
 
                     newUser.JMBG = user.JMBG;
 
+                    // JMBG validation
                     if (JmbgInputValidation(newUser.JMBG) == false)
                     {
                         MessageBox.Show("Wrong input, please check your JMBG (13 characters).");
@@ -144,6 +156,7 @@ namespace Company.ViewModel
                     newAdmin.ExpirationDate = DateTime.Now.AddDays(7);
                     newAdmin.UserID = newUser.UserID;
 
+                    // saving data to the database
                     context.tblUsers.Add(newUser);
                     context.tblAdmins.Add(newAdmin);
                     context.SaveChanges();
