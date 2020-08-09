@@ -34,7 +34,15 @@
                     <DataGridTextColumn Header="Hourly Rate" Binding="{Binding HourlyRate}"/>
                     <DataGridTextColumn Header="Realisation" Binding="{Binding Realisation}"/>
                     <DataGridTextColumn Header="ManagerID" Binding="{Binding ManagerID}"/>
-                    
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="btnDeleteProject" Content="X" 
+                                Command="{Binding DataContext.DeleteProject, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                        Margin="4" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Company.ViewModel
@@ -112,6 +113,52 @@ namespace Company.ViewModel
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+            }
+        }
+
+        private ICommand deleteProject;
+        public ICommand DeleteProject
+        {
+            get
+            {
+                if (deleteProject == null)
+                {
+                    deleteProject = new RelayCommand(param => DeleteProjectExecute(), param => CanDeleteProjectExecute());
+                }
+                return deleteProject;
+            }
+            
+        }
+
+        private bool CanDeleteProjectExecute()
+        {
+            return true;
+        }
+
+        private void DeleteProjectExecute()
+        {
+            try
+            {
+                using (CompanyDBEntities context = new CompanyDBEntities())
+                {
+                    int id = project.ProjectID;
+
+                    MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete the project?", "Delete Confirmation", MessageBoxButton.YesNo);
+
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                    {
+                        tblProject projectToDelete = (from x in context.tblProjects where x.ProjectID == id select x).First();
+
+                        context.tblProjects.Remove(projectToDelete);
+                        context.SaveChanges();
+
+                        ProjectList = GetAllProjects().ToList();
+                    }
+                }               
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The project can not be deleted, please try again.");
             }
         }
 
