@@ -64,6 +64,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\AddPositionViewModel.cs" />
+    <Compile Include="ViewModel\AddProjectViewModel.cs" />
     <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
     <Compile Include="ViewModel\CreateManagerViewModel.cs" />
     <Compile Include="ViewModel\LocalAdminViewModel.cs" />

@@ -35,11 +35,17 @@ namespace Company.ViewModel
             set { projectList = value; OnPropertyChanged("ProjectList"); }
         }
 
-        public ManagerViewModel(ManagerView managerViewOpen)
+        private tblManager manager;
+        public tblManager Manager
         {
-            managerView = managerViewOpen;
-            position = new tblPosition();
-            project = new tblProject();
+            get { return manager; }
+            set { manager = value; OnPropertyChanged("Manager"); }
+        }
+        
+        public ManagerViewModel(ManagerView managerViewOpen, tblManager managerToPass)
+        {
+            manager = managerToPass;
+            managerView = managerViewOpen;            
             ProjectList = GetAllProjects();
         }
 
@@ -65,8 +71,12 @@ namespace Company.ViewModel
         {
             try
             {
-                AddProjectView addProject = new AddProjectView();
+                AddProjectView addProject = new AddProjectView(manager);
                 addProject.ShowDialog();
+                if ((addProject.DataContext as AddProjectViewModel).IsUpdateProject == true)
+                {
+                    ProjectList = GetAllProjects().ToList();                    
+                }
             }
             catch (Exception ex)
             {

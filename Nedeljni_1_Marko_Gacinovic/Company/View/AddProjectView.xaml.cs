@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Company.Models;
+using Company.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,9 +22,22 @@ namespace Company.View
     /// </summary>
     public partial class AddProjectView : Window
     {
-        public AddProjectView()
+        public AddProjectView(tblManager manager)
         {
             InitializeComponent();
+            this.DataContext = new AddProjectViewModel(this, manager);
+        }
+
+        private void NumbersTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void RealisationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^012]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

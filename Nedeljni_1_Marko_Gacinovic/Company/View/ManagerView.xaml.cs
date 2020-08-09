@@ -1,4 +1,5 @@
-﻿using Company.ViewModel;
+﻿using Company.Models;
+using Company.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace Company.View
     /// </summary>
     public partial class ManagerView : Window
     {
-        public ManagerView()
+        public ManagerView(tblManager manager)
         {
             InitializeComponent();
-            this.DataContext = new ManagerViewModel(this);
+            this.DataContext = new ManagerViewModel(this, manager);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Company.ViewModel;
+﻿using Company.Models;
+using Company.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

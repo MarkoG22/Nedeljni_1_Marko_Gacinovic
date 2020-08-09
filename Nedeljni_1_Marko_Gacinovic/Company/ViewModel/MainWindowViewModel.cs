@@ -39,9 +39,18 @@ namespace Company.ViewModel
             }
         }
 
+        private tblManager manager;
+        public tblManager Manager
+        {
+            get { return manager; }
+            set { manager = value; OnPropertyChanged("Manager"); }
+        }
+
+
+
         // constructor
         public MainWindowViewModel(MainWindow mainOpen)
-        {
+        {            
             main = mainOpen;
         }
 
@@ -93,8 +102,21 @@ namespace Company.ViewModel
             }
             else if (IsManager(username,userPassword))
             {
-                ManagerView manager = new ManagerView();
-                manager.ShowDialog();
+                try
+                {
+                    using (CompanyDBEntities context = new CompanyDBEntities())
+                    {
+                        tblUser user = (from x in context.tblUsers where x.Username == username select x).First();
+                        manager = (from y in context.tblManagers where y.UserID == user.UserID select y).First();
+
+                        ManagerView managerView = new ManagerView(manager);
+                        managerView.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                }
             }
             else
             {
