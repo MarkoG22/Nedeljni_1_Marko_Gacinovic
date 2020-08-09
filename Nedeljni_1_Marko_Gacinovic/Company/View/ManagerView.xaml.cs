@@ -12,20 +12,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Company
+namespace Company.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ManagerView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManagerView : Window
     {
-        public MainWindow()
+        public ManagerView(tblManager manager)
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel(this);
+            this.DataContext = new ManagerViewModel(this, manager);
         }
     }
 }

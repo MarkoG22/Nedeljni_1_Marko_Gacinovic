@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +64,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FileActions\FileActions.cs" />
+    <Compile Include="ViewModel\AddPositionViewModel.cs" />
+    <Compile Include="ViewModel\AddProjectViewModel.cs" />
+    <Compile Include="ViewModel\CreateEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\CreateManagerViewModel.cs" />
+    <Compile Include="ViewModel\LocalAdminViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ManagerViewModel.cs" />
+    <Compile Include="ViewModel\MasterViewModel.cs" />
+    <Compile Include="ViewModel\SystemAdminViewModel.cs" />
+    <Compile Include="ViewModel\TeamAdminViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AddPositionView.xaml.cs">
+      <DependentUpon>AddPositionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddProjectView.xaml.cs">
+      <DependentUpon>AddProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateEmployeeView.xaml.cs">
+      <DependentUpon>CreateEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateManagerView.xaml.cs">
+      <DependentUpon>CreateManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LocalAdminView.xaml.cs">
+      <DependentUpon>LocalAdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerView.xaml.cs">
+      <DependentUpon>ManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MasterView.xaml.cs">
+      <DependentUpon>MasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SystemAdminView.xaml.cs">
+      <DependentUpon>SystemAdminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamAdminView.xaml.cs">
+      <DependentUpon>TeamAdminView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,12 +111,94 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddPositionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LocalAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SystemAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TeamAdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CompanyDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompanyDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompanyDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblAdmin.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblManager.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblPosition.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProject.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSector.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUser.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblWorker.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwAdmin.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwManager.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwWorker.cs">
+      <DependentUpon>CompanyDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,13 +216,38 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\CompanyDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CompanyDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\CompanyDBModel.edmx.diagram">
+      <DependentUpon>CompanyDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\password.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\CompanyDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CompanyDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>CompanyDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\CompanyDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CompanyDBModel.edmx</DependentUpon>
+      <LastGenOutput>CompanyDBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

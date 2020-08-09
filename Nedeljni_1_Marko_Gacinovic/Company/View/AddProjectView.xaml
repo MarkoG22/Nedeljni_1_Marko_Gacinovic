@@ -1,0 +1,66 @@
+﻿<Window x:Class="Company.View.AddProjectView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Company.View"
+        mc:Ignorable="d"
+        Title="AddProjectView" Height="350" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6"/>
+            <RowDefinition Height="auto"/> 
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="1" Name="lblProjectName" Content="Project Name: " Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="1" Grid.Row="3" Name="lblDescription" Content="Description: " Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="1" Grid.Row="5" Name="lblClientName" Content="Client Name: " Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="1" Grid.Row="7" Name="lblContractManager" Content="Contract Manager : " Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="1" Grid.Row="9" Name="lblHourlyRate" Content="Hourly Rate: " Padding="0" HorizontalAlignment="Right"/>
+        <Label Grid.Column="1" Grid.Row="11" Name="lblRealisation" Content="Realisation (0/1/2): " Padding="0" HorizontalAlignment="Right"/>
+        
+        <TextBox Grid.Column="3" Grid.Row="1" Name="txtProjectName" Height="20" Width="150"
+                 Text="{Binding Project.ProjectName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="3" Grid.Row="3" Name="txtDescription" Height="20" Width="150"
+                 Text="{Binding Project.ProjectDescription, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="3" Grid.Row="5" Name="txtClientName" Height="20" Width="150" 
+                 Text="{Binding Project.ClientName, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+        <TextBox Grid.Column="3" Grid.Row="7" Name="txtContractManager" Height="20" Width="150"
+                 Text="{Binding Project.ContractManager, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+        <TextBox Grid.Column="3" Grid.Row="9" Name="txtHourlyRate" Height="20" Width="150" PreviewTextInput="NumbersTextBox" 
+                 Text="{Binding Project.HourlyRate, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+        <TextBox Grid.Column="3" Grid.Row="11" Name="txtRealisation" Height="20" Width="150" PreviewTextInput="RealisationTextBox" 
+                 Text="{Binding Project.Realisation, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+        <Button Grid.Column="3" Grid.Row="29" Name="btnSave" Content="Save" Height="20" Width="70" HorizontalAlignment="Left"
+                Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Grid.Column="3" Grid.Row="29" Name="btnClose" Content="Close" Height="20" Width="70" HorizontalAlignment="Right"
+                Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</Window>
