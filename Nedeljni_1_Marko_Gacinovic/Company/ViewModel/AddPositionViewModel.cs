@@ -67,6 +67,8 @@ namespace Company.ViewModel
 
                     context.tblPositions.Add(newPosition);
                     context.SaveChanges();
+
+                    FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "position", newPosition.PositionName);
                 }
                 addPosition.Close();
             }

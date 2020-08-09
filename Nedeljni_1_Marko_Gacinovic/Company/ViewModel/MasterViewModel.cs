@@ -147,6 +147,10 @@ namespace Company.ViewModel
                     context.tblUsers.Add(newUser);
                     context.tblAdmins.Add(newAdmin);
                     context.SaveChanges();
+
+                    // logging the action
+                    FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
+                    FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "admin", newUser.FirstName + " " + newUser.LastName);
                 }
                 masterView.Close();
             }

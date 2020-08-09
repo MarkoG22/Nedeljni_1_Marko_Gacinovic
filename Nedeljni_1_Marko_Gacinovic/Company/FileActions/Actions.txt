@@ -1,0 +1,6 @@
+09.08.2020 7:18:00 PM - created project: sad
+09.08.2020 7:18:05 PM - deleted project: sad
+09.08.2020 7:18:31 PM - created user: sda asd
+09.08.2020 7:18:31 PM - created employee: sda asd
+09.08.2020 7:19:15 PM - created user: asd asd
+09.08.2020 7:19:15 PM - created manager: asd asd

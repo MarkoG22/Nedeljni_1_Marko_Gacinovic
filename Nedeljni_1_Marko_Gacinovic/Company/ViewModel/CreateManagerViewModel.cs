@@ -133,6 +133,9 @@ namespace Company.ViewModel
                     context.tblUsers.Add(newUser);
                     context.tblManagers.Add(newManager);
                     context.SaveChanges();
+
+                    FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
+                    FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "manager", newUser.FirstName + " " + newUser.LastName);
                 }
                 createManagerView.Close();
             }

@@ -153,6 +153,8 @@ namespace Company.ViewModel
                         context.SaveChanges();
 
                         ProjectList = GetAllProjects().ToList();
+
+                        FileActions.FileActions.Instance.Deleting(FileActions.FileActions.path, FileActions.FileActions.actions, "project", projectToDelete.ProjectName);
                     }
                 }               
             }

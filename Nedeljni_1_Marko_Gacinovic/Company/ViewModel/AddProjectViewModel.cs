@@ -130,6 +130,8 @@ namespace Company.ViewModel
                     context.tblProjects.Add(newProject);
                     context.SaveChanges();
 
+                    FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "project", newProject.ProjectName);
+
                     IsUpdateProject = true;
                 }
                 addProject.Close();
