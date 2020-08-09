@@ -140,6 +140,20 @@ namespace Company.ViewModel
             }
         }
 
+        // command for closing the window
+        private ICommand close;
+        public ICommand Close
+        {
+            get
+            {
+                if (close == null)
+                {
+                    close = new RelayCommand(param => CloseExecute(), param => CanCloseExecute());
+                }
+                return close;
+            }
+        }
+
         /// <summary>
         /// method for closing the window
         /// </summary>
