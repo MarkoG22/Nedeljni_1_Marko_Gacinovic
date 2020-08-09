@@ -91,6 +91,11 @@ namespace Company.ViewModel
                 LocalAdminView local = new LocalAdminView();
                 local.ShowDialog();
             }
+            else if (IsManager(username,userPassword))
+            {
+                ManagerView manager = new ManagerView();
+                manager.ShowDialog();
+            }
             else
             {
                 MessageBox.Show("Wrong username or password, please try again.");
@@ -198,6 +203,25 @@ namespace Company.ViewModel
             {
                 System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
                 return null;
+            }
+        }
+
+        private bool IsManager(string username, string password)
+        {
+            try
+            {
+                using (CompanyDBEntities context = new CompanyDBEntities())
+                {
+                    tblUser user = (from x in context.tblUsers where x.Username == username && x.UserPassword == password select x).First();
+                    int id = user.UserID;
+                    tblManager manager = (from y in context.tblManagers where y.UserID == id select y).First();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return false;
             }
         }
     }

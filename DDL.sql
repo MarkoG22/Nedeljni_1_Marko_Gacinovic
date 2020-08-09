@@ -88,6 +88,20 @@ CREATE TABLE tblProject (
 	ManagerID INT FOREIGN KEY REFERENCES tblManager(ManagerID) NOT NULL,
 );
 
+use CompanyDB
+INSERT INTO tblSector(SectorName, SectorDescription)
+VALUES ('Marketing', 'Marketing sector'),
+('IT', 'Information Technology sector'),
+('Sales', 'Sales sector'),
+('Manufacture', 'Manufacturing sector');
+
+use CompanyDB
+INSERT INTO tblPosition(PositionName, PositionDescription)
+VALUES ('Delivery', 'Delivery'),
+('Assistant', 'Assistant'),
+('Executive', 'Executive'),
+('Support', 'Support');
+
 GO
 CREATE VIEW vwWorker AS
 	SELECT	tblUser.*, 
@@ -109,3 +123,4 @@ CREATE VIEW vwAdmin AS
 	SELECT	tblUser.*, tblAdmin.ExpirationDate, tblAdmin.AdminType, tblAdmin.AdminID
 	FROM	tblUser, tblAdmin
 	WHERE	tblUser.UserID = tblAdmin.UserID
+
