@@ -2,10 +2,6 @@
 using Company.Models;
 using Company.View;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -74,6 +70,8 @@ namespace Company.ViewModel
                     // saving data
                     context.tblPositions.Add(newPosition);
                     context.SaveChanges();
+
+                    MessageBox.Show("The position created successfully.");
 
                     // logging the action
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "position", newPosition.PositionName);

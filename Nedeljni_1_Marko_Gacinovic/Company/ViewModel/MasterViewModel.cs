@@ -161,6 +161,8 @@ namespace Company.ViewModel
                     context.tblAdmins.Add(newAdmin);
                     context.SaveChanges();
 
+                    MessageBox.Show("The admin created successfully.");
+
                     // logging the action
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "admin", newUser.FirstName + " " + newUser.LastName);

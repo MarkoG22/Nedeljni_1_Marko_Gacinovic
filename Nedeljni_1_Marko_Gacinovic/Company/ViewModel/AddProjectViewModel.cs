@@ -139,6 +139,8 @@ namespace Company.ViewModel
                     context.tblProjects.Add(newProject);
                     context.SaveChanges();
 
+                    MessageBox.Show("The project created successfully.");
+
                     // logging action
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "project", newProject.ProjectName);
 

@@ -142,6 +142,8 @@ namespace Company.ViewModel
                     context.tblManagers.Add(newManager);
                     context.SaveChanges();
 
+                    MessageBox.Show("The manager created successfully.");
+
                     // logging actions
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "manager", newUser.FirstName + " " + newUser.LastName);

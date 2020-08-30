@@ -189,6 +189,8 @@ namespace Company.ViewModel
                     context.tblWorkers.Add(newWorker);
                     context.SaveChanges();
 
+                    MessageBox.Show("The employee created successfully.");
+
                     // logging actions
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "user", newUser.FirstName + " " + newUser.LastName);
                     FileActions.FileActions.Instance.Adding(FileActions.FileActions.path, FileActions.FileActions.actions, "employee", newUser.FirstName + " " + newUser.LastName);

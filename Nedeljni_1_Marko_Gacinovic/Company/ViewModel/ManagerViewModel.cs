@@ -170,6 +170,8 @@ namespace Company.ViewModel
                         // updating the list
                         ProjectList = GetAllProjects().ToList();
 
+                        MessageBox.Show("The project deleted successfully.");
+
                         // logging the action
                         FileActions.FileActions.Instance.Deleting(FileActions.FileActions.path, FileActions.FileActions.actions, "project", projectToDelete.ProjectName);
                     }
