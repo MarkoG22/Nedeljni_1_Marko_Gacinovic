@@ -63,7 +63,15 @@
         <TextBox Grid.Column="3" Grid.Row="13" Name="txtUsername" Height="20" Width="150" 
                  Text="{Binding User.Username, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
         <TextBox Grid.Column="3" Grid.Row="15" Name="txtUserPassword" Height="20" Width="150" 
-                 Text="{Binding User.UserPassword, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+                 Text="{Binding User.UserPassword, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                 FontFamily="pack://application:,,,/Resources/#password" >
+            <TextBox.InputBindings>
+                <!--Disable CTRL+C -->
+                <KeyBinding Command="ApplicationCommands.NotACommand"
+            Key="C"
+            Modifiers="Control" />
+            </TextBox.InputBindings>
+        </TextBox>
         <TextBox Grid.Column="3" Grid.Row="17" Name="txtAdminType" Height="20" Width="150" 
                  Text="{Binding Admin.AdminType, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
         <Button Grid.Column="3" Grid.Row="19" Name="btnSave" Content="Save" Height="20" Width="70" HorizontalAlignment="Left"

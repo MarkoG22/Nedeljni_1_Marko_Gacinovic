@@ -4,3 +4,13 @@
 09.08.2020 7:18:31 PM - created employee: sda asd
 09.08.2020 7:19:15 PM - created user: asd asd
 09.08.2020 7:19:15 PM - created manager: asd asd
+18.08.2020 5:37:26 PM - created user: Marko Gacinovic
+18.08.2020 5:37:26 PM - created admin: Marko Gacinovic
+18.08.2020 5:38:12 PM - created user: Milan Bratic
+18.08.2020 5:38:12 PM - created employee: Milan Bratic
+18.08.2020 5:38:47 PM - created user: Boris Prpos
+18.08.2020 5:38:47 PM - created manager: Boris Prpos
+18.08.2020 5:39:04 PM - created project: asd
+18.08.2020 5:39:07 PM - deleted project: asd
+18.08.2020 5:39:57 PM - created position: sad
+18.08.2020 5:40:04 PM - created project: asd
